@@ -1,11 +1,284 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="utf-8" />
-  <title>Website Iseng</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portal Tech Co.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: rgba(255,255,255,0.95);
+      --panel-bg: rgba(18,20,28,0.56);
+      --panel-border: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: #0b0f1a;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* Background area that mimics the Canva screenshot card */
+    .hero {
+      width:100%;
+      max-width:880px;
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow: 0 12px 30px rgba(3,6,12,0.6);
+      position:relative;
+      background-image: linear-gradient(180deg, rgba(3,6,12,0.55), rgba(3,6,12,0.55)), url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=2f3b1f6c646b4f5f6bfc3b6f9f3f010b');
+      background-size:cover;
+      background-position:center right;
+      min-height:420px;
+    }
+
+    .hero-inner{
+      padding:48px 40px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      min-height:420px;
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .brand-title{
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:0.4px;
+      margin:0;
+      text-shadow: 0 6px 18px rgba(2,6,18,0.6);
+    }
+    .subtitle{
+      font-size:12px;
+      font-weight:600;
+      color: rgba(255,255,255,0.7);
+      margin-top:4px;
+      margin-bottom:18px;
+      letter-spacing:1.6px;
+    }
+
+    /* central panel (glass) */
+    .panel {
+      width: 460px;
+      max-width:92%;
+      padding:20px;
+      border-radius:6px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid var(--panel-border);
+      backdrop-filter: blur(8px) saturate(120%);
+      box-shadow: 0 8px 30px rgba(3,6,12,0.55);
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      align-items:center;
+    }
+
+    .icons-grid {
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .category {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      padding:12px 8px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:transform .16s ease, background .16s ease;
+    }
+    .category:hover{
+      transform:translateY(-6px);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .icon {
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      padding:6px;
+    }
+    .cat-label {
+      font-size:12px;
+      color: rgba(255,255,255,0.85);
+      text-align:center;
+      font-weight:600;
+    }
+
+    /* social icons row */
+    .social-row{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      margin-top:6px;
+    }
+    .sbtn{
+      width:34px;height:34px;border-radius:6px;display:grid;place-items:center;
+      background:var(--glass); border:1px solid rgba(255,255,255,0.04); cursor:pointer; transition:transform .12s;
+    }
+    .sbtn:hover{transform:translateY(-4px)}
+
+    /* small footer under the hero (mimic "Tambah bagian" area) */
+    .below {
+      margin-top:18px;
+      display:flex;
+      width:100%;
+      max-width:880px;
+      justify-content:center;
+      gap:8px;
+    }
+    .ghost {
+      width:420px;
+      max-width:92%;
+      border-radius:8px;
+      padding:12px 16px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:rgba(255,255,255,0.9);
+      text-align:center;
+      cursor:default;
+    }
+
+    /* responsive tweaks */
+    @media (max-width:640px){
+      .hero-inner{padding:28px 18px; min-height:520px}
+      .panel{width:94%}
+      .icons-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
 </head>
 <body>
-  <h1>Halo! Ini website percobaan dari GitHub Pages</h1>
-  <p>Created on: 17 November 2025</p>
+  <main>
+    <section class="hero" role="banner" aria-label="Portal Tech preview">
+      <div class="hero-inner">
+        <h1 class="brand-title">Portal Tech Co.</h1>
+        <div class="subtitle">CHOOSE A CATEGORY</div>
+
+        <div class="panel" role="navigation" aria-label="Kategori produk">
+          <div class="icons-grid">
+            <!-- Printers -->
+            <div class="category" tabindex="0" title="Printers">
+              <div class="icon" aria-hidden="true">
+                <!-- printer SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="9" width="12" height="7" rx="1"></rect>
+                  <path d="M6 14H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2"></path>
+                  <path d="M9 18h6"></path>
+                </svg>
+              </div>
+              <div class="cat-label">Printers</div>
+            </div>
+
+            <!-- Monitors -->
+            <div class="category" tabindex="0" title="Monitors">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                  <path d="M8 20h8"></path>
+                  <path d="M12 16v4"></path>
+                </svg>
+              </div>
+              <div class="cat-label">Monitors</div>
+            </div>
+
+            <!-- Headsets -->
+            <div class="category" tabindex="0" title="Headsets">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 13a9 9 0 0 1 18 0v3a2 2 0 0 1-2 2h-1a1 1 0 0 1-1-1v-4"></path>
+                  <path d="M6 13v2a1 1 0 0 0 1 1h.5"></path>
+                </svg>
+              </div>
+              <div class="cat-label">Headsets</div>
+            </div>
+
+            <!-- Storage -->
+            <div class="category" tabindex="0" title="Storage">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="6" rx="2"></rect>
+                  <rect x="3" y="10" width="18" height="6" rx="2"></rect>
+                  <rect x="3" y="16" width="18" height="4" rx="2"></rect>
+                </svg>
+              </div>
+              <div class="cat-label">Storage</div>
+            </div>
+
+            <!-- Processors -->
+            <div class="category" tabindex="0" title="Processors">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                  <path d="M3 12h2"></path><path d="M19 12h2"></path>
+                  <path d="M12 3v2"></path><path d="M12 19v2"></path>
+                </svg>
+              </div>
+              <div class="cat-label">Processors</div>
+            </div>
+
+            <!-- Mouse -->
+            <div class="category" tabindex="0" title="Mouse">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2c3 0 6 2 6 6v8c0 4-3 6-6 6s-6-2-6-6V8c0-4 3-6 6-6z"></path>
+                  <path d="M12 7v4"></path>
+                </svg>
+              </div>
+              <div class="cat-label">Mouse</div>
+            </div>
+          </div>
+
+          <div class="social-row" aria-hidden="true">
+            <button class="sbtn" title="Instagram" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8"></path>
+                <path d="M17.5 6.5h.01"></path>
+              </svg>
+            </button>
+            <button class="sbtn" title="Facebook" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v7h4v-7h3l1-4h-4V6a1 1 0 0 1 1-1h2z"></path>
+              </svg>
+            </button>
+            <button class="sbtn" title="Twitter" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- subtle dark overlay to improve contrast -->
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,6,12,0.15), rgba(2,6,12,0.45));pointer-events:none"></div>
+    </section>
+
+    <div class="below">
+      <div class="ghost">+ Tambah bagian</div>
+    </div>
+  </main>
 </body>
 </html>
